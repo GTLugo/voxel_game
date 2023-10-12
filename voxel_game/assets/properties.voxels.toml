@@ -1,0 +1,17 @@
+[[voxel]]
+id = "core::air"
+can_collide = false
+is_opaque = false
+phase = "gas"
+
+[[voxel]]
+id = "core::stone"
+can_collide = false
+is_opaque = false
+phase = "solid"
+
+[[voxel]]
+id = "core::grass"
+can_collide = false
+is_opaque = false
+phase = "solid"

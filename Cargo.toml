@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+  "voxel_game"
+]
+
+# Enable a small amount of optimization in debug mode
+[profile.dev.package."voxel_game"]
+opt-level = 1
+
+# Enable high optimizations for dependencies
+[profile.dev.package."*"]
+opt-level = 3
