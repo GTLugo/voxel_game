@@ -31,7 +31,7 @@ pub struct Chunk {
 pub struct VoxelId(pub String);
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Voxel {
+pub struct VoxelProperties {
   pub id: String,
   pub can_collide: bool,
   pub is_opaque: bool,
@@ -49,3 +49,4 @@ pub trait VoxelEntity: Send + Sync {
   */
   fn on_destroy(&self, commands: &mut Commands, voxel_entity: Entity);
 }
+

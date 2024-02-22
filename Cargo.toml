@@ -1,13 +1,28 @@
-[workspace]
+[package]
+name     = "voxel_game"
+version  = "0.1.0"
+edition  = "2021"
+authors  = ["Gabriel Lugo"]
 resolver = "2"
-members = [
-  "voxel_game"
-]
 
-# Enable a small amount of optimization in debug mode
 [profile.dev.package."voxel_game"]
-opt-level = 1
+opt-level = 0
 
-# Enable high optimizations for dependencies
 [profile.dev.package."*"]
 opt-level = 3
+
+[dependencies]
+bevy               = { version = "0.13" }
+bevy_atmosphere    = { version = "0.8" }
+bevy_vector_shapes = { version = "0.7" }
+bevy_common_assets = { version = "0.10", features = ["toml"] }
+bevy_asset_loader  = "0.20"
+
+serde    = { version = "1.0", features = ["derive"] }
+toml     = { version = "0.8" }
+strum    = { version = "0.26", features = ["derive"] }
+rusqlite = { version = "0.31" }
+
+tracing            = { version = "0.1" }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror          = { version = "1.0" }

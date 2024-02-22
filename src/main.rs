@@ -2,7 +2,7 @@
 
 use std::time::Duration;
 
-use bevy::{diagnostic::{FrameTimeDiagnosticsPlugin, EntityCountDiagnosticsPlugin}, prelude::*, window::PresentMode, core_pipeline::experimental::taa::TemporalAntiAliasPlugin, log::LogPlugin, asset::ChangeWatcher};
+use bevy::{diagnostic::{FrameTimeDiagnosticsPlugin, EntityCountDiagnosticsPlugin}, prelude::*, window::PresentMode, core_pipeline::experimental::taa::TemporalAntiAliasPlugin, log::LogPlugin};
 use bevy_atmosphere::prelude::*;
 use bevy_common_assets::toml::TomlAssetPlugin;
 use tracing::Level;
@@ -26,7 +26,7 @@ fn main() {
     .add_state::<AssetState>()
     .add_state::<WorldState>()
     .add_state::<GameState>()
-    .insert_resource(FixedTime::new_from_secs(1.0 / 100.0))
+    .insert_resource(Time::<Fixed>::from_seconds(1.0 / 100.0))
     .add_plugins((
       DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
@@ -38,12 +38,8 @@ fn main() {
         ..default()
       }).set(LogPlugin {
         level: Level::INFO,
-        filter: "voxel_game=trace,naga=off,wgpu_hal=off,wgpu_core=off,bevy_render=error,bevy_app=error,bevy_ecs=error,bevy_asset_loader=error".to_string(),
-      }).set(AssetPlugin {
-        watch_for_changes: Some(ChangeWatcher {
-          delay: Duration::from_millis(500)
-        }),
-        ..Default::default()
+        filter: "RUST_LOG=off,voxel_game=trace".to_string(),
+        update_subscriber: None,
       }),
       TomlAssetPlugin::<VoxelPropertiesAsset>::new(&["voxel.toml", "voxels.toml"]),
       TemporalAntiAliasPlugin,

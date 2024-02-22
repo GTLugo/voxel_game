@@ -32,11 +32,11 @@ pub fn build_voxel_assets_system(
   info!("Building assets...");
   if let Some(voxel_properties) = voxel_properties_assets.get(&voxel_assets.voxel_properties_handle) {
     // construct the hashmap
-    let properties: HashMap<String, Voxel> = voxel_properties.voxel.clone().into_iter()
+    let properties: HashMap<String, VoxelProperties> = voxel_properties.voxel.clone().into_iter()
       .map(|p| (p.id.clone(), p))
       .collect();
   
-    commands.insert_resource(VoxelProperties {
+    commands.insert_resource(VoxelPropertiesMap {
       properties
     });
   }
@@ -48,7 +48,7 @@ pub fn build_voxel_assets_system(
 
 pub fn build_world_system(
   mut commands: Commands,
-  voxel_properties: Res<VoxelProperties>,
+  voxel_properties: Res<VoxelPropertiesMap>,
   // mut meshes: ResMut<Assets<Mesh>>,
   // mut materials: ResMut<Assets<ColorMaterial>>,
 ) {

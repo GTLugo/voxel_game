@@ -1,7 +1,8 @@
-/build
-/bin
 /target
-/Cargo.lock
 /.idea
 /.vscode
 /.vs
+/.cargo
+
+Cargo.lock
+rustc-ice-*
